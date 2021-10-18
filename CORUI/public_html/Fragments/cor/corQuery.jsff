@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelStretchLayout id="psl1" binding="#{backingBeanScope.CallReportBB.psl1}">
+    <f:facet name="center">
+      <af:panelGroupLayout layout="vertical" id="pgl1" binding="#{backingBeanScope.CallReportBB.pgl1}">
+        <af:panelHeader text="Search Page" id="ph1" binding="#{backingBeanScope.CallReportBB.ph1}">
+          <af:query id="qryId1" headerText="Search" disclosed="true"
+                    value="#{bindings.DssCorHeaderViewCriteriaQuery.queryDescriptor}"
+                    model="#{bindings.DssCorHeaderViewCriteriaQuery.queryModel}"
+                    queryListener="#{bindings.DssCorHeaderViewCriteriaQuery.processQuery}"
+                    queryOperationListener="#{bindings.DssCorHeaderViewCriteriaQuery.processQueryOperation}"
+                    resultComponentId="::pc1:resId1" saveQueryMode="hidden" modeChangeVisible="false"
+                    binding="#{backingBeanScope.CallReportBB.qryId1}"/>
+        </af:panelHeader>
+        <af:panelCollection id="pc1" styleClass="AFStretchWidth" featuresOff="detach &amp;&amp; viewMenu"
+                            binding="#{backingBeanScope.CallReportBB.pc1}">
+          <f:facet name="menus"/>
+          <f:facet name="toolbar">
+            <af:toolbar id="t1" binding="#{backingBeanScope.CallReportBB.t1}">
+              <af:group id="g1" binding="#{backingBeanScope.CallReportBB.g1}">
+                <af:button text="Create New" id="b1" inlineStyle="background-color:transparent;" action="goCreate"
+                           binding="#{backingBeanScope.CallReportBB.b1}"/>
+              </af:group>
+            </af:toolbar>
+          </f:facet>
+          <f:facet name="statusbar"/>
+          <af:table value="#{bindings.DssCorHeaderView1.collectionModel}" var="row"
+                    rows="#{bindings.DssCorHeaderView1.rangeSize}"
+                    emptyText="#{bindings.DssCorHeaderView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    rowBandingInterval="0" fetchSize="#{bindings.DssCorHeaderView1.rangeSize}" id="resId1"
+                    selectedRowKeys="#{bindings.DssCorHeaderView1.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.DssCorHeaderView1.collectionModel.makeCurrent}" rowSelection="single"
+                    binding="#{backingBeanScope.CallReportBB.resId1}">
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.label}" id="c9" rendered="false">
+              <af:inputText value="#{row.bindings.CorHeaderIdPk.inputValue}"
+                            label="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.label}"
+                            required="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.mandatory}"
+                            columns="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.displayWidth}"
+                            maximumLength="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.precision}"
+                            shortDesc="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.tooltip}" id="it1">
+                <f:validator binding="#{row.bindings.CorHeaderIdPk.validator}"/>
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.DssCorHeaderView1.hints.CorHeaderIdPk.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.CorDocNumber.label}" id="c7" width="200"
+                       align="center">
+              <af:outputText value="#{row.CorDocNumber}"
+                             shortDesc="#{bindings.DssCorHeaderView1.hints.CorDocNumber.tooltip}" id="ot7"/>
+            </af:column>
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.CurrentBranchName.label}" id="resId1c5"
+                       width="130" align="center">
+              <af:outputText value="#{row.CurrentBranchName}"
+                             shortDesc="#{bindings.DssCorHeaderView1.hints.CurrentBranchName.tooltip}" id="ot5"/>
+            </af:column>
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.FromManagerName.label}" id="resId1c3" width="130"
+                       align="center">
+              <af:outputText value="#{row.FromManagerName}"
+                             shortDesc="#{bindings.DssCorHeaderView1.hints.FromManagerName.tooltip}" id="ot3"/>
+            </af:column>
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.ToManagerName.label}" id="resId1c4" width="130"
+                       align="center">
+              <af:outputText value="#{row.ToManagerName}"
+                             shortDesc="#{bindings.DssCorHeaderView1.hints.ToManagerName.tooltip}" id="ot4"/>
+            </af:column>
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.ToBranchCodeFk.label}" id="c6" width="120"
+                       align="center">
+              <af:outputText value="#{row.ToBranchCodeFk}"
+                             shortDesc="#{bindings.DssCorHeaderView1.hints.ToBranchCodeFk.tooltip}" id="ot6"/>
+            </af:column>
+            <af:column headerText="#{bindings.DssCorHeaderView1.hints.WorkflowStatus.label}" id="c4" width="120"
+                       align="center">
+              <af:outputText value="#{row.WorkflowStatus}"
+                             shortDesc="#{bindings.DssCorHeaderView1.hints.WorkflowStatus.tooltip}" id="ot1"/>
+            </af:column>
+            <af:column id="c1" align="center" headerText="Detail" width="50">
+              <af:link id="l1" icon="/images/detailsicon_enabled.gif" action="goDetail"/>
+            </af:column>
+            <af:column id="c2" align="center" headerText="Update" width="50">
+              <af:link id="l2" icon="/images/updateicon_enabled.gif" action="goUpdate"
+                       disabled="#{row.WorkflowStatus eq 'APPROVED' or row.WorkflowStatus eq 'INPROCESS'}"/>
+            </af:column>
+            <af:column id="c3" align="center" headerText="Delete" width="50">
+              <af:link id="l3" icon="/images/deleteicon_enabled.gif" action="goDelete"
+                       disabled="#{row.WorkflowStatus eq 'APPROVED' or row.WorkflowStatus eq 'INPROCESS'}"/>
+            </af:column>
+            <af:column id="c8" align="center" headerText="Report" width="50">
+              <af:link id="l4" icon="/images/printLogo.gif"
+                       actionListener="#{CallReport.callDSSReports('DSS_COR', (row.bindings.CorHeaderIdPk.inputValue))}"/>
+            </af:column>
+          </af:table>
+        </af:panelCollection>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelStretchLayout>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:CallReportBB-->
+</ui:composition>

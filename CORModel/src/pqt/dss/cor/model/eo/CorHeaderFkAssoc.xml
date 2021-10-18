@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CorHeaderFkAssoc"
+  Version="12.2.1.0.31"
+  InheritPersonalization="merge">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="DssCorHeader"
+    Cardinality="1"
+    Source="true"
+    Owner="pqt.dss.cor.model.eo.DssCorHeader"
+    LockLevel="NONE"
+    DeleteContainee="true">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_minCardinality" Value="1"/>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="DssCorHeader"/>
+      <Attr Name="_foreignKey" Value="pqt.dss.cor.model.eo.DssCorHeader.CorHeaderPk"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="pqt.dss.cor.model.eo.DssCorHeader.CorHeaderIdPk"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="DssCorLine"
+    Cardinality="-1"
+    Owner="pqt.dss.cor.model.eo.DssCorLine">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="DssCorLine"/>
+      <Attr Name="_foreignKey" Value="pqt.dss.cor.model.eo.DssCorLine.CorHeaderFk"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="pqt.dss.cor.model.eo.DssCorLine.CorHeaderIdFk"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

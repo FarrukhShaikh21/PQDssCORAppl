@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.0.31" id="corCreateUpdatePageDef"
+                Package="Fragments.cor">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DssCorLineView2" RangeSize="-1" DataControl="CORAMDataControl" id="DssCorLineView2Iterator"
+              ChangeEventPolicy="none"/>
+    <iterator Binds="DssCorHeaderView1" RangeSize="25" DataControl="CORAMDataControl" id="DssCorHeaderView1Iterator"
+              ChangeEventPolicy="none"/>
+  </executables>
+  <bindings>
+    <action IterBinding="DssCorLineView2Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <tree IterBinding="DssCorLineView2Iterator" id="DssCorLineView2">
+      <nodeDefinition DefName="pqt.dss.cor.model.vo.DssCorLineView" Name="DssCorLineView20">
+        <AttrNames>
+          <Item Value="AgentCode"/>
+          <Item Value="AgentName"/>
+          <Item Value="Designation"/>
+          <Item Value="NCqBus"/>
+          <Item Value="NCqBusPol"/>
+          <Item Value="NHyBus"/>
+          <Item Value="NHyBusPol"/>
+          <Item Value="NYrBus"/>
+          <Item Value="NYrBusPol"/>
+          <Item Value="AgentLevelReason"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="Apply" RequiresUpdateModel="true" Action="invokeMethod" MethodName="Apply"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_CurrentBranchName"
+                  id="CurrentBranchName"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_FromManagerCode"
+                  id="FromManagerCode"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_ToManagerCode"
+                  id="ToManagerCode"/>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="FromManagerName">
+      <AttrNames>
+        <Item Value="FromManagerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="ToManagerName">
+      <AttrNames>
+        <Item Value="ToManagerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="ToBranchCodeFk">
+      <AttrNames>
+        <Item Value="ToBranchCodeFk"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="CorDocNumber">
+      <AttrNames>
+        <Item Value="CorDocNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="DssCorLineView2Iterator" id="Delete1" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="EnterDate">
+      <AttrNames>
+        <Item Value="EnterDate"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="searchAgents" RequiresUpdateModel="true" Action="invokeMethod" MethodName="searchAgents"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider"
+                  ReturnName="data.CORAMDataControl.methodResults.searchAgents_CORAMDataControl_dataProvider_searchAgents_result"/>
+    <listOfValues Uses="LOV_AgentCode" StaticList="false" IterBinding="DssCorLineView2Iterator" id="AgentCode"/>
+  </bindings>
+</pageDefinition>

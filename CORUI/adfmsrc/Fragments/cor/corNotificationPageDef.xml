@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.0.31" id="corNotificationPageDef"
+                Package="Fragments.cor">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DssCorHeaderView1" RangeSize="25" DataControl="CORAMDataControl" id="DssCorHeaderView1Iterator"/>
+    <iterator Binds="DssCorLineView2" RangeSize="-1" DataControl="CORAMDataControl" id="DssCorLineView2Iterator"/>
+  </executables>
+  <bindings>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_FromManagerCode"
+                  id="FromManagerCode"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_ToManagerCode"
+                  id="ToManagerCode"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_CurrentBranchName"
+                  id="CurrentBranchName"/>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="FromManagerName">
+      <AttrNames>
+        <Item Value="FromManagerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="ToManagerName">
+      <AttrNames>
+        <Item Value="ToManagerName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="DssCorLineView2Iterator" id="DssCorLineView2">
+      <nodeDefinition DefName="pqt.dss.cor.model.vo.DssCorLineView" Name="DssCorLineView20">
+        <AttrNames>
+          <Item Value="AgentCode"/>
+          <Item Value="AgentName"/>
+          <Item Value="Designation"/>
+          <Item Value="AgentLevelReason"/>
+          <Item Value="NCqBus"/>
+          <Item Value="NCqBusPol"/>
+          <Item Value="NHyBus"/>
+          <Item Value="NHyBusPol"/>
+          <Item Value="NYrBus"/>
+          <Item Value="NYrBusPol"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="CorDocNumber">
+      <AttrNames>
+        <Item Value="CorDocNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="ToBranchCodeFk">
+      <AttrNames>
+        <Item Value="ToBranchCodeFk"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

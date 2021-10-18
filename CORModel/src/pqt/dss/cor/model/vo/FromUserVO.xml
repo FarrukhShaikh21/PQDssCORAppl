@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="FromUserVO"
+  Version="12.2.1.0.31"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="pqt.dss.cor.model.vo.FromUserVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT distinct su.user_id_pk, cl.cor_line_id_pk 
+  FROM dss_cor_line cl, dss_sm_users su 
+ WHERE cl.agent_no_fk = su.emp_id_fk]]></SQLQuery>
+  <ViewAttribute
+    Name="UserIdPk"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="USER_ID_PK"
+    Expression="USER_ID_PK"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="CorLineIdPk"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="COR_LINE_ID_PK"
+    Expression="COR_LINE_ID_PK"
+    SQLType="NUMERIC"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="CorLineIdPk"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="pqt.dss.cor.model.CORModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

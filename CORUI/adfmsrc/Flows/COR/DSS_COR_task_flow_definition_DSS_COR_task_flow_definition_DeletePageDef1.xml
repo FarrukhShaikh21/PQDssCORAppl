@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.0.31"
+                id="DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef1" Package="Flows.COR"
+                SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="DssCorHeaderView1" RangeSize="25" DataControl="CORAMDataControl" id="DssCorHeaderView1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="DssCorHeaderView1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <af:panelStretchLayout id="psl1" binding="#{backingBeanScope.corDetailBean.psl1}">
+    <f:facet name="center">
+      <af:panelGroupLayout id="pgl1" layout="vertical" binding="#{backingBeanScope.corDetailBean.pgl1}">
+        <af:panelHeader text="Detail page" id="ph1"
+                        binding="#{backingBeanScope.corDetailBean.ph1}">
+          <f:facet name="toolbar">
+            <af:toolbar id="t1" binding="#{backingBeanScope.corDetailBean.t1}">
+              <af:group id="g1" binding="#{backingBeanScope.corDetailBean.g1}">
+                <af:button text="Back To Search" id="b1" action="backQuery"
+                           binding="#{backingBeanScope.corDetailBean.b1}"/>
+                <af:button text="Submit to Process" id="b2" binding="#{backingBeanScope.corDetailBean.b2}"
+                           action="#{backingBeanScope.corDetailBean.SubmitForApproval}"
+                           disabled="#{bindings.WorkflowStatus.inputValue eq 'APPROVED' or bindings.WorkflowStatus.inputValue eq 'INPROCESS'}"/>
+              </af:group>
+            </af:toolbar>
+          </f:facet>
+        </af:panelHeader>
+        <af:panelGroupLayout id="pgl2" layout="vertical" binding="#{backingBeanScope.corDetailBean.pgl2}">
+          <af:panelLabelAndMessage label="#{bindings.CorDocNumber.hints.label}" id="plam3"
+                                   binding="#{backingBeanScope.corDetailBean.plam3}" inlineStyle="font-weight:bolder;"
+                                   labelStyle="font-weight:bolder;">
+            <af:outputText value="#{bindings.CorDocNumber.inputValue}"
+                           shortDesc="#{bindings.CorDocNumber.hints.tooltip}" id="ot3"
+                           binding="#{backingBeanScope.corDetailBean.ot3}"/>
+          </af:panelLabelAndMessage>
+          <af:panelFormLayout id="pfl1" rows="7" binding="#{backingBeanScope.corDetailBean.pfl1}">
+            <af:inputListOfValues id="currentBranchNameId"
+                                  popupTitle="Search and Select: #{bindings.CurrentBranchName.hints.label}"
+                                  value="#{bindings.CurrentBranchName.inputValue}"
+                                  label="#{bindings.CurrentBranchName.hints.label}"
+                                  model="#{bindings.CurrentBranchName.listOfValuesModel}"
+                                  required="#{bindings.CurrentBranchName.hints.mandatory}"
+                                  columns="#{bindings.CurrentBranchName.hints.displayWidth}"
+                                  shortDesc="#{bindings.CurrentBranchName.hints.tooltip}" disabled="true"
+                                  binding="#{backingBeanScope.corDetailBean.currentBranchNameId}"
+                                  labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.CurrentBranchName.validator}"/>
+            </af:inputListOfValues>
+            <af:inputListOfValues id="fromManagerCodeId"
+                                  popupTitle="Search and Select: #{bindings.FromManagerCode.hints.label}"
+                                  value="#{bindings.FromManagerCode.inputValue}"
+                                  label="#{bindings.FromManagerCode.hints.label}"
+                                  model="#{bindings.FromManagerCode.listOfValuesModel}"
+                                  required="#{bindings.FromManagerCode.hints.mandatory}"
+                                  columns="#{bindings.FromManagerCode.hints.displayWidth}"
+                                  shortDesc="#{bindings.FromManagerCode.hints.tooltip}" disabled="true"
+                                  binding="#{backingBeanScope.corDetailBean.fromManagerCodeId}"
+                                  labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.FromManagerCode.validator}"/>
+            </af:inputListOfValues>
+            <af:inputText value="#{bindings.FromManagerName.inputValue}" label="#{bindings.FromManagerName.hints.label}"
+                          required="#{bindings.FromManagerName.hints.mandatory}"
+                          columns="#{bindings.FromManagerName.hints.displayWidth}"
+                          maximumLength="#{bindings.FromManagerName.hints.precision}"
+                          shortDesc="#{bindings.FromManagerName.hints.tooltip}" partialTriggers="fromManagerCodeId"
+                          id="it1" disabled="true" binding="#{backingBeanScope.corDetailBean.it1}"
+                          labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.FromManagerName.validator}"/>
+            </af:inputText>
+            <af:inputListOfValues id="toManagerCodeId"
+                                  popupTitle="Search and Select: #{bindings.ToManagerCode.hints.label}"
+                                  value="#{bindings.ToManagerCode.inputValue}"
+                                  label="#{bindings.ToManagerCode.hints.label}"
+                                  model="#{bindings.ToManagerCode.listOfValuesModel}"
+                                  required="#{bindings.ToManagerCode.hints.mandatory}"
+                                  columns="#{bindings.ToManagerCode.hints.displayWidth}"
+                                  shortDesc="#{bindings.ToManagerCode.hints.tooltip}" disabled="true"
+                                  binding="#{backingBeanScope.corDetailBean.toManagerCodeId}"
+                                  labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.ToManagerCode.validator}"/>
+            </af:inputListOfValues>
+            <af:inputText value="#{bindings.ToManagerName.inputValue}" label="#{bindings.ToManagerName.hints.label}"
+                          required="#{bindings.ToManagerName.hints.mandatory}"
+                          columns="#{bindings.ToManagerName.hints.displayWidth}"
+                          maximumLength="#{bindings.ToManagerName.hints.precision}"
+                          shortDesc="#{bindings.ToManagerName.hints.tooltip}" partialTriggers="toManagerCodeId" id="it2"
+                          disabled="true" binding="#{backingBeanScope.corDetailBean.it2}"
+                          labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.ToManagerName.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.ToBranchCodeFk.inputValue}" label="#{bindings.ToBranchCodeFk.hints.label}"
+                          required="#{bindings.ToBranchCodeFk.hints.mandatory}"
+                          columns="#{bindings.ToBranchCodeFk.hints.displayWidth}"
+                          maximumLength="#{bindings.ToBranchCodeFk.hints.precision}"
+                          shortDesc="#{bindings.ToBranchCodeFk.hints.tooltip}" id="it8"
+                          binding="#{backingBeanScope.corDetailBean.it8}" partialTriggers="toManagerCodeId"
+                          labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.ToBranchCodeFk.validator}"/>
+            </af:inputText>
+            <af:inputDate value="#{bindings.EnterDate.inputValue}" label="#{bindings.EnterDate.hints.label}"
+                          required="#{bindings.EnterDate.hints.mandatory}"
+                          columns="#{bindings.EnterDate.hints.displayWidth}"
+                          shortDesc="#{bindings.EnterDate.hints.tooltip}" id="id1"
+                          binding="#{backingBeanScope.corDetailBean.id1}" disabled="true"
+                          labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.EnterDate.validator}"/>
+              <af:convertDateTime pattern="#{bindings.EnterDate.format}"/>
+            </af:inputDate>
+            <af:inputText value="#{bindings.WorkflowStatus.inputValue}" label="#{bindings.WorkflowStatus.hints.label}"
+                          required="#{bindings.WorkflowStatus.hints.mandatory}"
+                          columns="#{bindings.WorkflowStatus.hints.displayWidth}"
+                          maximumLength="#{bindings.WorkflowStatus.hints.precision}"
+                          shortDesc="#{bindings.WorkflowStatus.hints.tooltip}" id="it3"
+                          binding="#{backingBeanScope.corDetailBean.it3}" disabled="true"
+                          labelStyle="font-weight:bolder;">
+              <f:validator binding="#{bindings.WorkflowStatus.validator}"/>
+            </af:inputText>
+          </af:panelFormLayout>
+          <af:separator id="s2" binding="#{backingBeanScope.corDetailBean.s2}"/>
+          <af:separator id="s1" binding="#{backingBeanScope.corDetailBean.s1}"/>
+          <af:panelCollection id="pc1" styleClass="AFStretchWidth" binding="#{backingBeanScope.corDetailBean.pc1}"
+                              featuresOff="detach &amp;&amp; viewMenu">
+            <f:facet name="menus"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="statusbar"/>
+            <af:table value="#{bindings.DssCorLineView2.collectionModel}" var="row"
+                      rows="#{bindings.DssCorLineView2.rangeSize}"
+                      emptyText="#{bindings.DssCorLineView2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      rowBandingInterval="0" selectedRowKeys="#{bindings.DssCorLineView2.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.DssCorLineView2.collectionModel.makeCurrent}" rowSelection="single"
+                      fetchSize="#{bindings.DssCorLineView2.rangeSize}" id="t2"
+                      binding="#{backingBeanScope.corDetailBean.t2}">
+              <af:column headerText="#{bindings.DssCorLineView2.hints.AgentCode.label}" id="c1" width="100">
+                <af:outputText value="#{row.AgentCode}" shortDesc="#{bindings.DssCorLineView2.hints.AgentCode.tooltip}"
+                               id="ot8"/>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.AgentName.label}" id="c2" width="100">
+                <af:outputText value="#{row.AgentName}" shortDesc="#{bindings.DssCorLineView2.hints.AgentName.tooltip}"
+                               id="ot9"/>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.Designation.label}" id="c3" width="120">
+                <af:outputText value="#{row.Designation}"
+                               shortDesc="#{bindings.DssCorLineView2.hints.Designation.tooltip}" id="ot10"/>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.NCqBus.label}" id="c9">
+                <af:inputText value="#{row.bindings.NCqBus.inputValue}"
+                              label="#{bindings.DssCorLineView2.hints.NCqBus.label}"
+                              required="#{bindings.DssCorLineView2.hints.NCqBus.mandatory}"
+                              columns="#{bindings.DssCorLineView2.hints.NCqBus.displayWidth}"
+                              maximumLength="#{bindings.DssCorLineView2.hints.NCqBus.precision}"
+                              shortDesc="#{bindings.DssCorLineView2.hints.NCqBus.tooltip}" id="it7" disabled="true">
+                  <f:validator binding="#{row.bindings.NCqBus.validator}"/>
+                  <af:convertNumber groupingUsed="false" pattern="#{bindings.DssCorLineView2.hints.NCqBus.format}"/>
+                  <af:convertNumber type="number" pattern="#,###.##"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.NCqBusPol.label}" id="c8" width="120">
+                <af:inputText value="#{row.bindings.NCqBusPol.inputValue}"
+                              label="#{bindings.DssCorLineView2.hints.NCqBusPol.label}"
+                              required="#{bindings.DssCorLineView2.hints.NCqBusPol.mandatory}"
+                              columns="#{bindings.DssCorLineView2.hints.NCqBusPol.displayWidth}"
+                              maximumLength="#{bindings.DssCorLineView2.hints.NCqBusPol.precision}"
+                              shortDesc="#{bindings.DssCorLineView2.hints.NCqBusPol.tooltip}" id="it9" disabled="true">
+                  <f:validator binding="#{row.bindings.NCqBusPol.validator}"/>
+                  <af:convertNumber groupingUsed="false" pattern="#{bindings.DssCorLineView2.hints.NCqBusPol.format}"/>
+                  <af:convertNumber type="number" pattern="#,###.##"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.NHyBus.label}" id="c6" width="120">
+                <af:inputText value="#{row.bindings.NHyBus.inputValue}"
+                              label="#{bindings.DssCorLineView2.hints.NHyBus.label}"
+                              required="#{bindings.DssCorLineView2.hints.NHyBus.mandatory}"
+                              columns="#{bindings.DssCorLineView2.hints.NHyBus.displayWidth}"
+                              maximumLength="#{bindings.DssCorLineView2.hints.NHyBus.precision}"
+                              shortDesc="#{bindings.DssCorLineView2.hints.NHyBus.tooltip}" id="it6" disabled="true">
+                  <f:validator binding="#{row.bindings.NHyBus.validator}"/>
+                  <af:convertNumber groupingUsed="false" pattern="#{bindings.DssCorLineView2.hints.NHyBus.format}"/>
+                  <af:convertNumber type="number" pattern="#,###.##"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.NHyBusPol.label}" id="c7" width="130">
+                <af:inputText value="#{row.bindings.NHyBusPol.inputValue}"
+                              label="#{bindings.DssCorLineView2.hints.NHyBusPol.label}"
+                              required="#{bindings.DssCorLineView2.hints.NHyBusPol.mandatory}"
+                              columns="#{bindings.DssCorLineView2.hints.NHyBusPol.displayWidth}"
+                              maximumLength="#{bindings.DssCorLineView2.hints.NHyBusPol.precision}"
+                              shortDesc="#{bindings.DssCorLineView2.hints.NHyBusPol.tooltip}" id="it5" disabled="true">
+                  <f:validator binding="#{row.bindings.NHyBusPol.validator}"/>
+                  <af:convertNumber type="number" pattern="#,###.##"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.NYrBus.label}" id="c10">
+                <af:inputText value="#{row.bindings.NYrBus.inputValue}"
+                              label="#{bindings.DssCorLineView2.hints.NYrBus.label}"
+                              required="#{bindings.DssCorLineView2.hints.NYrBus.mandatory}"
+                              columns="#{bindings.DssCorLineView2.hints.NYrBus.displayWidth}"
+                              maximumLength="#{bindings.DssCorLineView2.hints.NYrBus.precision}"
+                              shortDesc="#{bindings.DssCorLineView2.hints.NYrBus.tooltip}" id="it4" disabled="true">
+                  <f:validator binding="#{row.bindings.NYrBus.validator}"/>
+                  <af:convertNumber groupingUsed="false" pattern="#{bindings.DssCorLineView2.hints.NYrBus.format}"/>
+                  <af:convertNumber type="number" pattern="#,###.##"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.NYrBusPol.label}" id="c5" width="120">
+                <af:inputText value="#{row.bindings.NYrBusPol.inputValue}"
+                              label="#{bindings.DssCorLineView2.hints.NYrBusPol.label}"
+                              required="#{bindings.DssCorLineView2.hints.NYrBusPol.mandatory}"
+                              columns="#{bindings.DssCorLineView2.hints.NYrBusPol.displayWidth}"
+                              maximumLength="#{bindings.DssCorLineView2.hints.NYrBusPol.precision}"
+                              shortDesc="#{bindings.DssCorLineView2.hints.NYrBusPol.tooltip}" id="it10" disabled="true">
+                  <f:validator binding="#{row.bindings.NYrBusPol.validator}"/>
+                  <af:convertNumber groupingUsed="false" pattern="#{bindings.DssCorLineView2.hints.NYrBusPol.format}"/>
+                  <af:convertNumber type="number" pattern="#,###.##"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.DssCorLineView2.hints.AgentLevelReason.label}" id="c4" width="150">
+                <af:outputText value="#{row.AgentLevelReason}"
+                               shortDesc="#{bindings.DssCorLineView2.hints.AgentLevelReason.tooltip}" id="ot11"/>
+              </af:column>
+            </af:table>
+          </af:panelCollection>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelStretchLayout>
+  <!--oracle-jdev-comment:auto-binding-backing-bean-name:corDetailBean-->
+</ui:composition>

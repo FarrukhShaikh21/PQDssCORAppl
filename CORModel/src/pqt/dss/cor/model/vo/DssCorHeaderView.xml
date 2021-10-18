@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DssCorHeaderView"
+  Version="12.2.1.0.31"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+    ComponentClass="pqt.dss.cor.model.vo.DssCorHeaderViewImpl"
+    ComponentInterface="pqt.dss.cor.model.vo.common.DssCorHeaderView"
+    ClientProxyName="pqt.dss.cor.model.vo.client.DssCorHeaderViewClient">
+    <DesignTime>
+        <Attr Name="_isExpertMode" Value="true"/>
+        <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+    </DesignTime>
+    <Variable
+      Name="VC_Branch_Name"
+      Kind="viewcriteria"
+      Type="java.lang.String">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.VC_Branch_Name_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </Variable>
+    <Variable
+        Name="NVC_wfDocumentId"
+        Kind="viewcriteria"
+        Type="oracle.jbo.domain.Number">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.NVC_wfDocumentId_LABEL"/>
+                <DISPLAYWIDTH
+                    Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </Variable>
+    <Variable
+        Name="VC_Doc_No"
+        Kind="viewcriteria"
+        Type="java.lang.String"/>
+    <ViewAccessor
+      Name="DssCorHeaderView1"
+      ViewObjectName="pqt.dss.cor.model.vo.DssCorHeaderView"
+      RowLevelBinds="true"/>
+    <ViewAccessor
+      Name="UserBranchDtlLovVo1"
+      ViewObjectName="pqt.dss.cor.model.lov.UserBranchDtlLovVo"
+      RowLevelBinds="true">
+        <ViewCriteriaUsage
+          Name="CurrBranchLovVoCriteria"
+          FullName="pqt.dss.cor.model.lov.UserBranchDtlLovVo.CurrBranchLovVoCriteria"/>
+        <ParameterMap>
+            <PIMap Variable="VC_UserIdFk">
+                <TransientExpression
+                  trustMode="untrusted"
+                  Name="ExpressionScript"><![CDATA[UserIdFk]]></TransientExpression>
+            </PIMap>
+        </ParameterMap>
+    </ViewAccessor>
+    <ViewAccessor
+      Name="UserBranchDtlLovVo2"
+      ViewObjectName="pqt.dss.cor.model.lov.UserBranchDtlLovVo"
+      RowLevelBinds="true">
+        <ViewCriteriaUsage
+          Name="ToBranchLovVoCriteria"
+          FullName="pqt.dss.cor.model.lov.UserBranchDtlLovVo.ToBranchLovVoCriteria"/>
+        <ParameterMap>
+            <PIMap Variable="VC_To_EmpId">
+                <TransientExpression
+                  trustMode="untrusted"
+                  Name="ExpressionScript"><![CDATA[ToManagerNoFk]]></TransientExpression>
+            </PIMap>
+        </ParameterMap>
+    </ViewAccessor>
+    <ViewAccessor
+        Name="AgntManagerLovVO1"
+        ViewObjectName="pqt.dss.cor.model.lov.AgntManagerLovVO"
+        RowLevelBinds="true">
+        <ViewCriteriaUsage
+            Name="FromMgrViewCriteria"
+            FullName="pqt.dss.cor.model.lov.AgntManagerLovVO.FromMgrViewCriteria"/>
+        <ParameterMap>
+            <PIMap Variable="VC_FMgrBranchCode">
+                <TransientExpression
+                    trustMode="untrusted"
+                    Name="ExpressionScript"><![CDATA[FromBranchCodeFk]]></TransientExpression>
+            </PIMap>
+        </ParameterMap>
+    </ViewAccessor>
+    <ViewAccessor
+        Name="AgntManagerLovVO2"
+        ViewObjectName="pqt.dss.cor.model.lov.AgntManagerLovVO"
+        RowLevelBinds="true">
+        <ViewCriteriaUsage
+            Name="ToMgrViewCriteria"
+            FullName="pqt.dss.cor.model.lov.AgntManagerLovVO.ToMgrViewCriteria"/>
+        <ParameterMap>
+            <PIMap Variable="TMgrNoFk">
+                <TransientExpression
+                    trustMode="untrusted"
+                    Name="ExpressionScript"><![CDATA[FromManagerNoFk]]></TransientExpression>
+            </PIMap>
+        </ParameterMap>
+    </ViewAccessor>
+    <ListBinding
+      Name="LOV_CurrentBranchName"
+      ListVOName="UserBranchDtlLovVo1"
+      ListRangeSize="-1"
+      ComboRowCountHint="10"
+      NullValueFlag="none"
+      MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="CurrentBranchName"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="DerivedAttrNames">
+            <Item Value="FromBranchCodeFk"/>
+        </AttrArray>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="VBranchName"/>
+            <Item Value="VBranchCode"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="VBranchName"/>
+        </AttrArray>
+        <DisplayCriteria
+          Name="CurrBranchLovVoCriteria"/>
+    </ListBinding>
+    <ListBinding
+      Name="LOV_NewBranchName"
+      ListVOName="UserBranchDtlLovVo2"
+      ListRangeSize="-1"
+      NullValueFlag="none"
+      MRUCount="0"
+      ComboRowCountHint="10">
+        <AttrArray Name="AttrNames">
+            <Item Value="NewBranchName"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="DerivedAttrNames">
+            <Item Value="ToBranchCodeFk"/>
+        </AttrArray>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="VBranchName"/>
+            <Item Value="VBranchCode"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="VBranchName"/>
+        </AttrArray>
+        <DisplayCriteria
+          Name="ToBranchLovVoCriteria"/>
+    </ListBinding>
+    <ListBinding
+        Name="LOV_FromManagerCode"
+        ListVOName="AgntManagerLovVO1"
+        ListRangeSize="-1"
+        ComboRowCountHint="10"
+        NullValueFlag="none"
+        MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="FromManagerCode"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="DerivedAttrNames">
+            <Item Value="FromManagerName"/>
+            <Item Value="FromManagerNoFk"/>
+        </AttrArray>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="MgrAgentCode"/>
+            <Item Value="MgrAgentName"/>
+            <Item Value="MgrNAgentNo"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="MgrAgentCode"/>
+            <Item Value="MgrAgentName"/>
+            <Item Value="VBranchName"/>
+            <Item Value="AgentRank"/>
+        </AttrArray>
+        <DisplayCriteria
+            Name="FromMgrViewCriteria"/>
+    </ListBinding>
+    <ListBinding
+        Name="LOV_ToManagerCode"
+        ListVOName="AgntManagerLovVO2"
+        ListRangeSize="-1"
+        ComboRowCountHint="10"
+        NullValueFlag="none"
+        MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="ToManagerCode"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="DerivedAttrNames">
+            <Item Value="ToManagerName"/>
+            <Item Value="ToManagerNoFk"/>
+            <Item Value="ToBranchCodeFk"/>
+        </AttrArray>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="MgrAgentCode"/>
+            <Item Value="MgrAgentName"/>
+            <Item Value="MgrNAgentNo"/>
+            <Item Value="VBranchName"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="MgrAgentCode"/>
+            <Item Value="MgrAgentName"/>
+            <Item Value="VBranchName"/>
+            <Item Value="AgentRank"/>
+        </AttrArray>
+        <DisplayCriteria
+            Name="ToMgrViewCriteria"/>
+    </ListBinding>
+    <SQLQuery><![CDATA[SELECT DssCorHeader.COR_HEADER_ID_PK,               
+       DssCorHeader.FROM_BRANCH_CODE_FK,               
+       DssCorHeader.TO_BRANCH_CODE_FK,               
+       DssCorHeader.FROM_MANAGER_NO_FK,               
+       DssCorHeader.TO_MANAGER_NO_FK,               
+       DssCorHeader.COR_REASON,               
+       DssCorHeader.USER_ID_FK,               
+       DssCorHeader.ENTER_DATE,               
+       DssCorHeader.LAST_UPDATED_BY,               
+       DssCorHeader.LAST_UPDATED_DATE,     
+       DssCorHeader.Cor_Doc_Number,     
+       FROM_MGR.MGR_N_AGENT_NO FROM_MGR_NO,        
+       FROM_MGR.MGR_AGENT_CODE FROM_MANAGER_CODE,               
+       FROM_MGR.MGR_AGENT_NAME FROM_MANAGER_NAME,    
+       FROM_MGR.V_BRANCH_NAME FROM_MGR_BRANCH_NAME,   
+       FROM_MGR.V_BRANCH_CODE FROM_MGR_BRANCH_CODE,   
+       ------------------------------------      
+       TO_MGR.MGR_N_AGENT_NO TO_MGR_NO,       
+       TO_MGR.MGR_AGENT_CODE TO_MANAGER_CODE,               
+       TO_MGR.MGR_AGENT_NAME TO_MANAGER_NAME,   
+       TO_MGR.V_BRANCH_NAME TO_MANAGER_BR_NAME,   
+       TO_MGR.V_BRANCH_CODE TO_MANAGER_BR_CODE,            
+       FBR.V_BRANCH_NAME CURRENT_BRANCH_NAME,               
+       TBR.V_BRANCH_NAME NEW_BRANCH_NAME,              
+       DssCorHeader.Branch_Status,              
+       DssCorHeader.Dss_Status,              
+       DssCorHeader.Branch_Notif_Id_Fk,              
+       DssCorHeader.Dss_Notif_Id_Fk, 
+       DssCorHeader.Workflow_Status, 
+       DssCorHeader.Workflow_Notification_Id               
+  FROM DSS_COR_HEADER        DssCorHeader,               
+       VU_DSS_ALL_MGR_AGNT_VIEW FROM_MGR,               
+       VU_DSS_ALL_MGR_AGNT_VIEW TO_MGR,               
+       VU_DSS_ST_BRANCH    FBR,               
+       VU_DSS_ST_BRANCH    TBR               
+ WHERE FROM_MGR.MGR_N_AGENT_NO(+) = DssCorHeader.FROM_MANAGER_NO_FK               
+   AND TO_MGR.MGR_N_AGENT_NO(+) = DssCorHeader.TO_MANAGER_NO_FK               
+   AND FBR.V_BRANCH_CODE(+) = DssCorHeader.FROM_BRANCH_CODE_FK               
+   AND TBR.V_BRANCH_CODE(+) = DssCorHeader.TO_BRANCH_CODE_FK             
+   order by 1 DESC]]></SQLQuery>
+    <EntityUsage
+      Name="DssCorHeader"
+      Entity="pqt.dss.cor.model.eo.DssCorHeader"/>
+    <ViewAttribute
+      Name="CorHeaderIdPk"
+      IsNotNull="true"
+      PrecisionRule="true"
+      EntityAttrName="CorHeaderIdPk"
+      EntityUsage="DssCorHeader"
+      AliasName="COR_HEADER_ID_PK">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="FromBranchCodeFk"
+      PrecisionRule="true"
+      EntityAttrName="FromBranchCodeFk"
+      EntityUsage="DssCorHeader"
+      AliasName="FROM_BRANCH_CODE_FK">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="ToBranchCodeFk"
+      PrecisionRule="true"
+      EntityAttrName="ToBranchCodeFk"
+      EntityUsage="DssCorHeader"
+      AliasName="TO_BRANCH_CODE_FK">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+                <LABEL
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.ToBranchCodeFk_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="FromManagerNoFk"
+      PrecisionRule="true"
+      EntityAttrName="FromManagerNoFk"
+      EntityUsage="DssCorHeader"
+      AliasName="FROM_MANAGER_NO_FK">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="ToManagerNoFk"
+      PrecisionRule="true"
+      EntityAttrName="ToManagerNoFk"
+      EntityUsage="DssCorHeader"
+      AliasName="TO_MANAGER_NO_FK">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="CorReason"
+      PrecisionRule="true"
+      EntityAttrName="CorReason"
+      EntityUsage="DssCorHeader"
+      AliasName="COR_REASON">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.CorReason_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="60"/>
+                <DISPLAYHEIGHT
+                  Value="3"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="UserIdFk"
+      PrecisionRule="true"
+      EntityAttrName="UserIdFk"
+      EntityUsage="DssCorHeader"
+      AliasName="USER_ID_FK">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="EnterDate"
+      PrecisionRule="true"
+      EntityAttrName="EnterDate"
+      EntityUsage="DssCorHeader"
+      AliasName="ENTER_DATE">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+                <FMT_FORMAT
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.EnterDate_FMT_FORMAT"/>
+                <FMT_FORMATTER
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.EnterDate_FMT_FORMATTER"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="LastUpdatedBy"
+      PrecisionRule="true"
+      EntityAttrName="LastUpdatedBy"
+      EntityUsage="DssCorHeader"
+      AliasName="LAST_UPDATED_BY">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="LastUpdatedDate"
+      PrecisionRule="true"
+      EntityAttrName="LastUpdatedDate"
+      EntityUsage="DssCorHeader"
+      AliasName="LAST_UPDATED_DATE">
+        <Properties>
+            <SchemaBasedProperties>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="CorDocNumber"
+        PrecisionRule="true"
+        EntityAttrName="CorDocNumber"
+        EntityUsage="DssCorHeader"
+        AliasName="COR_DOC_NUMBER"/>
+    <ViewAttribute
+        Name="FromMgrNo"
+        IsPersistent="false"
+        PrecisionRule="true"
+        Type="oracle.jbo.domain.Number"
+        ColumnType="NUMBER"
+        AliasName="FROM_MGR_NO"
+        Expression="FROM_MGR_NO"
+        SQLType="NUMERIC"/>
+    <ViewAttribute
+      Name="FromManagerCode"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="30"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="FROM_MANAGER_CODE"
+      Expression="FROM_MANAGER_CODE"
+      SQLType="VARCHAR"
+      IsNotNull="true"
+        LOVName="LOV_FromManagerCode">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="30"/>
+        </DesignTime>
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.FromManagerCode_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+                <CONTROLTYPE
+                    Value="input_text_lov"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="FromManagerName"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="4000"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="FROM_MANAGER_NAME"
+      Expression="FROM_MANAGER_NAME"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="4000"/>
+        </DesignTime>
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.FromManagerName_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="FromMgrBranchName"
+        IsPersistent="false"
+        PrecisionRule="true"
+        Precision="500"
+        Type="java.lang.String"
+        ColumnType="VARCHAR2"
+        AliasName="FROM_MGR_BRANCH_NAME"
+        Expression="FROM_MGR_BRANCH_NAME"
+        SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="500"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="FromMgrBranchCode"
+        IsPersistent="false"
+        PrecisionRule="true"
+        Precision="50"
+        Type="java.lang.String"
+        ColumnType="VARCHAR2"
+        AliasName="FROM_MGR_BRANCH_CODE"
+        Expression="FROM_MGR_BRANCH_CODE"
+        SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="50"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="ToMgrNo"
+        IsPersistent="false"
+        PrecisionRule="true"
+        Type="oracle.jbo.domain.Number"
+        ColumnType="NUMBER"
+        AliasName="TO_MGR_NO"
+        Expression="TO_MGR_NO"
+        SQLType="NUMERIC"/>
+    <ViewAttribute
+      Name="ToManagerCode"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="30"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="TO_MANAGER_CODE"
+      Expression="TO_MANAGER_CODE"
+      SQLType="VARCHAR"
+      IsNotNull="true"
+        LOVName="LOV_ToManagerCode">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="30"/>
+        </DesignTime>
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.ToManagerCode_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+                <CONTROLTYPE
+                    Value="input_text_lov"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="ToManagerName"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="4000"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="TO_MANAGER_NAME"
+      Expression="TO_MANAGER_NAME"
+      SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="4000"/>
+        </DesignTime>
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.ToManagerName_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="ToManagerBrName"
+        IsPersistent="false"
+        PrecisionRule="true"
+        Precision="500"
+        Type="java.lang.String"
+        ColumnType="VARCHAR2"
+        AliasName="TO_MANAGER_BR_NAME"
+        Expression="TO_MANAGER_BR_NAME"
+        SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="500"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="ToManagerBrCode"
+        IsPersistent="false"
+        PrecisionRule="true"
+        Precision="50"
+        Type="java.lang.String"
+        ColumnType="VARCHAR2"
+        AliasName="TO_MANAGER_BR_CODE"
+        Expression="TO_MANAGER_BR_CODE"
+        SQLType="VARCHAR">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="50"/>
+        </DesignTime>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="CurrentBranchName"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="500"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="CURRENT_BRANCH_NAME"
+      Expression="CURRENT_BRANCH_NAME"
+      SQLType="VARCHAR"
+      LOVName="LOV_CurrentBranchName"
+      IsNotNull="true">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="500"/>
+        </DesignTime>
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.CurrentBranchName_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+                <CONTROLTYPE
+                  Value="input_text_lov"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+      Name="NewBranchName"
+      IsPersistent="false"
+      PrecisionRule="true"
+      Precision="500"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="NEW_BRANCH_NAME"
+      Expression="NEW_BRANCH_NAME"
+      SQLType="VARCHAR"
+      LOVName="LOV_NewBranchName"
+      IsNotNull="true">
+        <DesignTime>
+            <Attr Name="_DisplaySize" Value="500"/>
+        </DesignTime>
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                  ResId="pqt.dss.cor.model.vo.DssCorHeaderView.NewBranchName_LABEL"/>
+                <DISPLAYWIDTH
+                  Value="50"/>
+                <CONTROLTYPE
+                  Value="input_text_lov"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="BranchStatus"
+        PrecisionRule="true"
+        AliasName="BRANCH_STATUS"
+        EntityAttrName="BranchStatus"
+        EntityUsage="DssCorHeader">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.BranchStatus_LABEL"/>
+                <DISPLAYWIDTH
+                    Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="DssStatus"
+        PrecisionRule="true"
+        AliasName="DSS_STATUS"
+        EntityAttrName="DssStatus"
+        EntityUsage="DssCorHeader">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.DssStatus_LABEL"/>
+                <DISPLAYWIDTH
+                    Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="BranchNotifIdFk"
+        PrecisionRule="true"
+        AliasName="BRANCH_NOTIF_ID_FK"
+        EntityAttrName="BranchNotifIdFk"
+        EntityUsage="DssCorHeader"/>
+    <ViewAttribute
+        Name="DssNotifIdFk"
+        PrecisionRule="true"
+        AliasName="DSS_NOTIF_ID_FK"
+        EntityAttrName="DssNotifIdFk"
+        EntityUsage="DssCorHeader"/>
+    <ViewAttribute
+        Name="WorkflowStatus"
+        PrecisionRule="true"
+        EntityAttrName="WorkflowStatus"
+        EntityUsage="DssCorHeader"
+        AliasName="WORKFLOW_STATUS">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="pqt.dss.cor.model.vo.DssCorHeaderView.WorkflowStatus_LABEL"/>
+                <DISPLAYWIDTH
+                    Value="50"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="WorkflowNotificationId"
+        PrecisionRule="true"
+        EntityAttrName="WorkflowNotificationId"
+        EntityUsage="DssCorHeader"
+        AliasName="WORKFLOW_NOTIFICATION_ID"/>
+    <ViewCriteria
+      Name="DssCorHeaderViewCriteria"
+      ViewObjectName="pqt.dss.cor.model.vo.DssCorHeaderView"
+      Conjunction="AND">
+        <Properties Name="_Props">
+            <CustomProperties>
+                <Property
+                  Name="autoExecute"
+                  Value="false"/>
+                <Property
+                  Name="mode"
+                  Value="Basic"/>
+                <Property
+                  Name="allowConjunctionOverride"
+                  Value="true"/>
+                <Property
+                  Name="showInList"
+                  Value="true"/>
+                <Property
+                  Name="displayOperators"
+                  Value="InAdvancedMode"/>
+            </CustomProperties>
+        </Properties>
+        <ViewCriteriaRow
+          Name="DssCorHeaderViewCriteria_row_0"
+          UpperColumns="1">
+            <ViewCriteriaItem
+              Name="ToBranchCodeFk"
+              ViewAttribute="ToBranchCodeFk"
+              Operator="CONTAINS"
+              Conjunction="AND"
+              Value=":VC_Branch_Name"
+              IsBindVarValue="true"
+              Required="Optional"/>
+            <ViewCriteriaItem
+                Name="CorDocNumber"
+                ViewAttribute="CorDocNumber"
+                Operator="CONTAINS"
+                Conjunction="AND"
+                Value=":VC_Doc_No"
+                IsBindVarValue="true"
+                Required="Optional"/>
+        </ViewCriteriaRow>
+    </ViewCriteria>
+    <ViewCriteria
+        Name="NotificationViewCriteria"
+        ViewObjectName="pqt.dss.cor.model.vo.DssCorHeaderView"
+        Conjunction="AND">
+        <Properties Name="_Props">
+            <CustomProperties>
+                <Property
+                    Name="autoExecute"
+                    Value="false"/>
+                <Property
+                    Name="mode"
+                    Value="Basic"/>
+                <Property
+                    Name="allowConjunctionOverride"
+                    Value="true"/>
+                <Property
+                    Name="showInList"
+                    Value="true"/>
+                <Property
+                    Name="displayOperators"
+                    Value="InAdvancedMode"/>
+            </CustomProperties>
+        </Properties>
+        <ViewCriteriaRow
+            Name="DssCorHeaderViewCriteria1_row_0"
+            UpperColumns="1">
+            <ViewCriteriaItem
+                Name="CorHeaderIdPk"
+                ViewAttribute="CorHeaderIdPk"
+                Operator="="
+                Conjunction="AND"
+                Value=":NVC_wfDocumentId"
+                IsBindVarValue="true"
+                Required="Optional"/>
+        </ViewCriteriaRow>
+    </ViewCriteria>
+    <ViewLinkAccessor
+      Name="DssCorLineView1"
+      ViewLink="pqt.dss.cor.model.vo.CorHeaderFkLink"
+      Type="oracle.jbo.RowIterator"
+      IsUpdateable="false"/>
+    <ClientInterface
+        Name="__clientInterface">
+        <Method
+            Name="setNVC_wfDocumentId"
+            MethodName="setNVC_wfDocumentId">
+            <Return
+                Name="_return_type_"
+                Type="void"/>
+            <Parameter
+                Name="value"
+                Type="oracle.jbo.domain.Number"/>
+        </Method>
+        <Method
+            Name="corSearchUser"
+            MethodName="corSearchUser">
+            <Return
+                Name="_return_type_"
+                Type="void"/>
+        </Method>
+    </ClientInterface>
+    <ResourceBundle>
+        <PropertiesBundle
+          PropertiesFile="pqt.dss.cor.model.CORModelBundle"/>
+    </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.0.31" id="DataBindings"
+             SeparateXMLFiles="false" Package="pqt.dss.cor.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/WEB-INF/Flows/COR/DSS-COR-task-flow-definition.xml#DSS-COR-task-flow-definition@Rollback"
+          usageId="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_RollbackPageDef"/>
+    <page path="/Fragments/cor/corQuery.jsff" usageId="pqt_dss_cor_view_corQueryPageDef"/>
+    <page path="/WEB-INF/Flows/COR/DSS-COR-task-flow-definition.xml#DSS-COR-task-flow-definition@DeleteCommit"
+          usageId="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef"/>
+    <page path="/Fragments/cor/corDetail.jsff" usageId="pqt_dss_cor_view_corDetailPageDef"/>
+    <page path="/Fragments/cor/corCreateUpdate.jsff" usageId="pqt_dss_cor_view_corCreateUpdatePageDef"/>
+    <page path="/Page/COR.jsf" usageId="pqt_dss_cor_view_CORPageDef"/>
+    <page path="/WEB-INF/Flows/COR/DSS-COR-task-flow-definition.xml#DSS-COR-task-flow-definition@CreateInsert"
+          usageId="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_CreateInsertPageDef"/>
+    <page path="/WEB-INF/Flows/COR/DSS-COR-task-flow-definition.xml#DSS-COR-task-flow-definition@Delete"
+          usageId="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef1"/>
+    <page path="/Fragments/cor/corNotification.jsff" usageId="pqt_dss_cor_view_corNotificationPageDef"/>
+    <page path="/Fragments/cor/queryCor.jsff" usageId="pqt_dss_cor_view_queryCorPageDef"/>
+    <page path="/WEB-INF/Flows/COR/cor-notification-task-flow-definition.xml#cor-notification-task-flow-definition@setNVC_wfDocumentId"
+          usageId="pqt_dss_cor_view_cor_notification_task_flow_definition_cor_notification_task_flow_definition_setNVC_wfDocumentIdPageDef"/>
+    <page path="/Page/corNotification.jsf" usageId="pqt_dss_cor_view_corNotificationPageDef1"/>
+    <page path="/WEB-INF/Flows/COR/DSS-COR-task-flow-definition.xml#DSS-COR-task-flow-definition@corSearchUser"
+          usageId="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_corSearchUserPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_RollbackPageDef"
+          path="Flows.COR.DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_RollbackPageDef"/>
+    <page id="pqt_dss_cor_view_corQueryPageDef" path="Fragments.cor.corQueryPageDef"/>
+    <page id="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef"
+          path="Flows.COR.DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef"/>
+    <page id="pqt_dss_cor_view_corDetailPageDef" path="Fragments.cor.corDetailPageDef"/>
+    <page id="pqt_dss_cor_view_corCreateUpdatePageDef" path="Fragments.cor.corCreateUpdatePageDef"/>
+    <page id="pqt_dss_cor_view_CORPageDef" path="Page.CORPageDef"/>
+    <page id="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_CreateInsertPageDef"
+          path="Flows.COR.DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_CreateInsertPageDef"/>
+    <page id="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef1"
+          path="Flows.COR.DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef1"/>
+    <page id="pqt_dss_cor_view_corNotificationPageDef" path="Fragments.cor.corNotificationPageDef"/>
+    <page id="pqt_dss_cor_view_queryCorPageDef" path="Fragments.cor.queryCorPageDef"/>
+    <page id="pqt_dss_cor_view_cor_notification_task_flow_definition_cor_notification_task_flow_definition_setNVC_wfDocumentIdPageDef"
+          path="Flows.COR.cor_notification_task_flow_definition_cor_notification_task_flow_definition_setNVC_wfDocumentIdPageDef"/>
+    <page id="pqt_dss_cor_view_corNotificationPageDef1" path="Page.corNotificationPageDef"/>
+    <page id="pqt_dss_cor_view_DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_corSearchUserPageDef"
+          path="Flows.COR.DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_corSearchUserPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="CORAMDataControl" Package="pqt.dss.cor.model.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="CORAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

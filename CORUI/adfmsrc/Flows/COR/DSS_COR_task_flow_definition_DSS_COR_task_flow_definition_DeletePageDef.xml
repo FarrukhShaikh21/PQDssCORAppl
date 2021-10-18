@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.0.31"
+                id="DSS_COR_task_flow_definition_DSS_COR_task_flow_definition_DeletePageDef" Package="Flows.COR"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="Delete" RequiresUpdateModel="true" Action="invokeMethod" MethodName="Delete"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

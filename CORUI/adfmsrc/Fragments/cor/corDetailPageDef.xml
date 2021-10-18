@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.0.31" id="corDetailPageDef"
+                Package="Fragments.cor">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DssCorLineView2" RangeSize="-1" DataControl="CORAMDataControl" id="DssCorLineView2Iterator"/>
+    <iterator Binds="DssCorHeaderView1" RangeSize="25" DataControl="CORAMDataControl" id="DssCorHeaderView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DssCorLineView2Iterator" id="DssCorLineView2">
+      <nodeDefinition DefName="pqt.dss.cor.model.vo.DssCorLineView" Name="DssCorLineView20">
+        <AttrNames>
+          <Item Value="AgentCode"/>
+          <Item Value="AgentName"/>
+          <Item Value="Designation"/>
+          <Item Value="NCqBus"/>
+          <Item Value="NCqBusPol"/>
+          <Item Value="NHyBus"/>
+          <Item Value="NHyBusPol"/>
+          <Item Value="NYrBus"/>
+          <Item Value="NYrBusPol"/>
+          <Item Value="AgentLevelReason"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_FromManagerCode"
+                  id="FromManagerCode"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_ToManagerCode"
+                  id="ToManagerCode"/>
+    <listOfValues IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_CurrentBranchName"
+                  id="CurrentBranchName"/>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="FromManagerName">
+      <AttrNames>
+        <Item Value="FromManagerName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="ToManagerName">
+      <AttrNames>
+        <Item Value="ToManagerName"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="callWorkflow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="callWorkflow"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider">
+      <NamedData NDName="p_document_id" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="ApprovalType" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="DssApprove" RequiresUpdateModel="true" Action="invokeMethod" MethodName="DssApprove"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider"/>
+    <methodAction id="callWorkflow1" RequiresUpdateModel="true" Action="invokeMethod" MethodName="callWorkflow"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider">
+      <NamedData NDName="p_document_id" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="ApprovalType" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="CorHeaderIdPk1">
+      <AttrNames>
+        <Item Value="CorHeaderIdPk"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="CorDocNumber">
+      <AttrNames>
+        <Item Value="CorDocNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="ToBranchCodeFk">
+      <AttrNames>
+        <Item Value="ToBranchCodeFk"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="EnterDate">
+      <AttrNames>
+        <Item Value="EnterDate"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="callCORWorkflow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="callCORWorkflow"
+                  IsViewObjectMethod="false" DataControl="CORAMDataControl"
+                  InstanceName="data.CORAMDataControl.dataProvider">
+      <NamedData NDName="p_document_id" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <attributeValues IterBinding="DssCorHeaderView1Iterator" id="WorkflowStatus">
+      <AttrNames>
+        <Item Value="WorkflowStatus"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.0.31" id="corQueryPageDef"
+                Package="Fragments.cor">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DssCorHeaderView1" RangeSize="25" DataControl="CORAMDataControl" id="DssCorHeaderView1Iterator"/>
+    <searchRegion Criteria="DssCorHeaderViewCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="DssCorHeaderView1Iterator" id="DssCorHeaderViewCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DssCorHeaderView1Iterator" id="DssCorHeaderView1">
+      <nodeDefinition DefName="pqt.dss.cor.model.vo.DssCorHeaderView" Name="DssCorHeaderView10">
+        <AttrNames>
+          <Item Value="CorHeaderIdPk"/>
+          <Item Value="CorDocNumber"/>
+          <Item Value="CurrentBranchName"/>
+          <Item Value="FromManagerName"/>
+          <Item Value="ToManagerName"/>
+          <Item Value="ToBranchCodeFk"/>
+          <Item Value="WorkflowStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
