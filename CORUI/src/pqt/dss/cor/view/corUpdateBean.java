@@ -2,6 +2,7 @@ package pqt.dss.cor.view;
 
 import javax.faces.application.FacesMessage;
 
+import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 
 import oracle.adf.model.BindingContext;
@@ -11,6 +12,7 @@ import oracle.adf.view.rich.component.rich.data.RichTable;
 import oracle.adf.view.rich.component.rich.input.RichInputDate;
 import oracle.adf.view.rich.component.rich.input.RichInputListOfValues;
 import oracle.adf.view.rich.component.rich.input.RichInputText;
+import oracle.adf.view.rich.component.rich.input.RichSelectOneChoice;
 import oracle.adf.view.rich.component.rich.layout.RichPanelFormLayout;
 import oracle.adf.view.rich.component.rich.layout.RichPanelGroupLayout;
 import oracle.adf.view.rich.component.rich.layout.RichPanelHeader;
@@ -59,6 +61,11 @@ public class corUpdateBean {
     private RichPanelHeader ph2;
     private RichPanelStretchLayout psl1;
     private RichInputDate id1;
+    private RichSelectOneChoice soc1;
+    private UISelectItems si1;
+    private RichPanelGroupLayout pgl2;
+    private RichOutputText ot4;
+    private RichOutputText ot5;
 
     public corUpdateBean() {
     }
@@ -305,5 +312,45 @@ public class corUpdateBean {
                 FacesCtrlLOVBinding lov = (FacesCtrlLOVBinding) bindings.get("AgentCode");
                 String wcl = "V_AGENT_CODE NOT IN ("+ VAgentCode +")";
                 lov.getListIterBinding().getViewObject().setWhereClause(wcl);
+    }
+
+    public void setSoc1(RichSelectOneChoice soc1) {
+        this.soc1 = soc1;
+    }
+
+    public RichSelectOneChoice getSoc1() {
+        return soc1;
+    }
+
+    public void setSi1(UISelectItems si1) {
+        this.si1 = si1;
+    }
+
+    public UISelectItems getSi1() {
+        return si1;
+    }
+
+    public void setPgl2(RichPanelGroupLayout pgl2) {
+        this.pgl2 = pgl2;
+    }
+
+    public RichPanelGroupLayout getPgl2() {
+        return pgl2;
+    }
+
+    public void setOt4(RichOutputText ot4) {
+        this.ot4 = ot4;
+    }
+
+    public RichOutputText getOt4() {
+        return ot4;
+    }
+
+    public void setOt5(RichOutputText ot5) {
+        this.ot5 = ot5;
+    }
+
+    public RichOutputText getOt5() {
+        return ot5;
     }
 }

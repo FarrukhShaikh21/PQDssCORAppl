@@ -88,6 +88,9 @@ public class DssCorHeaderViewImpl extends ViewObjectImpl implements DssCorHeader
               FacesContext fctx = FacesContext.getCurrentInstance();
               ExternalContext ectx = fctx.getExternalContext();
               HttpSession userSession = (HttpSession) ectx.getSession(false);
+              userSession.setAttribute("SSV_UserDept", 3);
+              userSession.setAttribute("pUserId",1139);
+              userSession.setAttribute("SSV_UserType","BO");              
               Object VUserID = userSession.getAttribute("pUserId") == null ? "0" : userSession.getAttribute("pUserId");
                             setWhereClause("(exists\n" + 
                             " (select 1 \n" + 

@@ -431,7 +431,7 @@ public class DssCorHeaderImpl extends EntityImpl {
          setBranchStatus("INCOMPLETE");
          setDssStatus("INCOMPLETE");
 
-         ViewObject vo=getDBTransaction().getRootApplicationModule().findViewObject("VisitUserLocVO");
+         ViewObject vo=getDBTransaction().getRootApplicationModule().findViewObject("CorHeadUserLocVO");
          if (vo!=null)
            {
                    vo.remove();
@@ -442,11 +442,12 @@ public class DssCorHeaderImpl extends EntityImpl {
          ExternalContext ectx = fctx.getExternalContext();
          HttpSession userSession = (HttpSession) ectx.getSession(false);
          try {
-             vo=getDBTransaction().getRootApplicationModule().createViewObjectFromQueryStmt("UserLocVO", "select  GIS_LOCATION_ID_FK from DSS_SM_USERS WHERE USER_ID_PK="+getUserIdFk());
-             vo.executeQuery();
+            
              
              setUserIdFk(new Number(userSession.getAttribute("pUserId")));
              setLastUpdatedBy(new Number(userSession.getAttribute("pUserId")));
+             vo=getDBTransaction().getRootApplicationModule().createViewObjectFromQueryStmt("CorHeadUserLocVO", "select  GIS_LOCATION_ID_FK from DSS_SM_USERS WHERE USER_ID_PK="+getUserIdFk());
+             vo.executeQuery();             
              setGisLocationIdFk(new Number( vo.first().getAttribute(0).toString() ) );
          } catch (SQLException ex) {
              setUserIdFk(new Number(0));

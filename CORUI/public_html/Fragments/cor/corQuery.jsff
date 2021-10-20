@@ -20,7 +20,8 @@
             <af:toolbar id="t1" binding="#{backingBeanScope.CallReportBB.t1}">
               <af:group id="g1" binding="#{backingBeanScope.CallReportBB.g1}">
                 <af:button text="Create New" id="b1" inlineStyle="background-color:transparent;" action="goCreate"
-                           binding="#{backingBeanScope.CallReportBB.b1}"/>
+                           binding="#{backingBeanScope.CallReportBB.b1}"
+                           disabled="#{sessionScope.SSV_UserType != 'BO'}"/>
               </af:group>
             </af:toolbar>
           </f:facet>

@@ -215,6 +215,21 @@
             </af:table>
           </af:panelCollection>
         </af:panelGroupLayout>
+        <f:facet name="context">
+          <af:panelGroupLayout id="pgl2" binding="#{backingBeanScope.corUpdateBean.pgl2}" layout="horizontal">
+            <af:outputText value="(" id="ot5" binding="#{backingBeanScope.corUpdateBean.ot5}"/>
+            <af:selectOneChoice value="#{bindings.GisLocationIdFk.inputValue}" label="#{bindings.GisLocationIdFk.label}"
+                                required="#{bindings.GisLocationIdFk.hints.mandatory}"
+                                shortDesc="#{bindings.GisLocationIdFk.hints.tooltip}" id="soc1"
+                                binding="#{backingBeanScope.corUpdateBean.soc1}" simple="true"
+                                contentStyle="font-weight:bold" readOnly="true">
+              <f:selectItems value="#{bindings.GisLocationIdFk.items}" id="si1"
+                             binding="#{backingBeanScope.corUpdateBean.si1}"/>
+              <f:validator binding="#{bindings.GisLocationIdFk.validator}"/>
+            </af:selectOneChoice>
+            <af:outputText value=")" id="ot4" binding="#{backingBeanScope.corUpdateBean.ot4}"/>
+          </af:panelGroupLayout>
+        </f:facet>
       </af:panelHeader>
     </f:facet>
   </af:panelStretchLayout>

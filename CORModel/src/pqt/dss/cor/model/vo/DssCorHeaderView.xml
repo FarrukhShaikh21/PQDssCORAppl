@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="DssCorHeaderView"
-  Version="12.2.1.0.31"
+    Version="12.2.1.11.57"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -110,6 +110,10 @@
             </PIMap>
         </ParameterMap>
     </ViewAccessor>
+    <ViewAccessor
+        Name="AccLocationLov"
+        ViewObjectName="pqt.dss.cor.model.lov.LocationLov"
+        RowLevelBinds="true"/>
     <ListBinding
       Name="LOV_CurrentBranchName"
       ListVOName="UserBranchDtlLovVo1"
@@ -218,45 +222,65 @@
         <DisplayCriteria
             Name="ToMgrViewCriteria"/>
     </ListBinding>
-    <SQLQuery><![CDATA[SELECT DssCorHeader.COR_HEADER_ID_PK,               
-       DssCorHeader.FROM_BRANCH_CODE_FK,               
-       DssCorHeader.TO_BRANCH_CODE_FK,               
-       DssCorHeader.FROM_MANAGER_NO_FK,               
-       DssCorHeader.TO_MANAGER_NO_FK,               
-       DssCorHeader.COR_REASON,               
-       DssCorHeader.USER_ID_FK,               
-       DssCorHeader.ENTER_DATE,               
-       DssCorHeader.LAST_UPDATED_BY,               
-       DssCorHeader.LAST_UPDATED_DATE,     
-       DssCorHeader.Cor_Doc_Number,     
-       FROM_MGR.MGR_N_AGENT_NO FROM_MGR_NO,        
-       FROM_MGR.MGR_AGENT_CODE FROM_MANAGER_CODE,               
-       FROM_MGR.MGR_AGENT_NAME FROM_MANAGER_NAME,    
-       FROM_MGR.V_BRANCH_NAME FROM_MGR_BRANCH_NAME,   
-       FROM_MGR.V_BRANCH_CODE FROM_MGR_BRANCH_CODE,   
-       ------------------------------------      
-       TO_MGR.MGR_N_AGENT_NO TO_MGR_NO,       
-       TO_MGR.MGR_AGENT_CODE TO_MANAGER_CODE,               
-       TO_MGR.MGR_AGENT_NAME TO_MANAGER_NAME,   
-       TO_MGR.V_BRANCH_NAME TO_MANAGER_BR_NAME,   
-       TO_MGR.V_BRANCH_CODE TO_MANAGER_BR_CODE,            
-       FBR.V_BRANCH_NAME CURRENT_BRANCH_NAME,               
-       TBR.V_BRANCH_NAME NEW_BRANCH_NAME,              
-       DssCorHeader.Branch_Status,              
-       DssCorHeader.Dss_Status,              
-       DssCorHeader.Branch_Notif_Id_Fk,              
-       DssCorHeader.Dss_Notif_Id_Fk, 
-       DssCorHeader.Workflow_Status, 
-       DssCorHeader.Workflow_Notification_Id               
-  FROM DSS_COR_HEADER        DssCorHeader,               
-       VU_DSS_ALL_MGR_AGNT_VIEW FROM_MGR,               
-       VU_DSS_ALL_MGR_AGNT_VIEW TO_MGR,               
-       VU_DSS_ST_BRANCH    FBR,               
-       VU_DSS_ST_BRANCH    TBR               
- WHERE FROM_MGR.MGR_N_AGENT_NO(+) = DssCorHeader.FROM_MANAGER_NO_FK               
-   AND TO_MGR.MGR_N_AGENT_NO(+) = DssCorHeader.TO_MANAGER_NO_FK               
-   AND FBR.V_BRANCH_CODE(+) = DssCorHeader.FROM_BRANCH_CODE_FK               
-   AND TBR.V_BRANCH_CODE(+) = DssCorHeader.TO_BRANCH_CODE_FK             
+    <ListBinding
+        Name="LOV_GisLocationIdFk"
+        ListVOName="AccLocationLov"
+        ListRangeSize="-1"
+        NullValueFlag="start"
+        NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+        MRUCount="0">
+        <AttrArray Name="AttrNames">
+            <Item Value="GisLocationIdFk"/>
+        </AttrArray>
+        <AttrArray Name="AttrExpressions"/>
+        <AttrArray Name="ListAttrNames">
+            <Item Value="IlLocIdPk"/>
+        </AttrArray>
+        <AttrArray Name="ListDisplayAttrNames">
+            <Item Value="Location"/>
+        </AttrArray>
+        <DisplayCriteria/>
+    </ListBinding>
+    <SQLQuery><![CDATA[SELECT DssCorHeader.COR_HEADER_ID_PK,                
+       DssCorHeader.FROM_BRANCH_CODE_FK,                
+       DssCorHeader.TO_BRANCH_CODE_FK,                
+       DssCorHeader.FROM_MANAGER_NO_FK,                
+       DssCorHeader.TO_MANAGER_NO_FK,                
+       DssCorHeader.COR_REASON,                
+       DssCorHeader.USER_ID_FK,                
+       DssCorHeader.ENTER_DATE,                
+       DssCorHeader.LAST_UPDATED_BY,                
+       DssCorHeader.LAST_UPDATED_DATE,      
+       DssCorHeader.Cor_Doc_Number,      
+       FROM_MGR.MGR_N_AGENT_NO FROM_MGR_NO,         
+       FROM_MGR.MGR_AGENT_CODE FROM_MANAGER_CODE,                
+       FROM_MGR.MGR_AGENT_NAME FROM_MANAGER_NAME,     
+       FROM_MGR.V_BRANCH_NAME FROM_MGR_BRANCH_NAME,    
+       FROM_MGR.V_BRANCH_CODE FROM_MGR_BRANCH_CODE,    
+       ------------------------------------       
+       TO_MGR.MGR_N_AGENT_NO TO_MGR_NO,        
+       TO_MGR.MGR_AGENT_CODE TO_MANAGER_CODE,                
+       TO_MGR.MGR_AGENT_NAME TO_MANAGER_NAME,    
+       TO_MGR.V_BRANCH_NAME TO_MANAGER_BR_NAME,    
+       TO_MGR.V_BRANCH_CODE TO_MANAGER_BR_CODE,             
+       FBR.V_BRANCH_NAME CURRENT_BRANCH_NAME,                
+       TBR.V_BRANCH_NAME NEW_BRANCH_NAME,               
+       DssCorHeader.Branch_Status,               
+       DssCorHeader.Dss_Status,               
+       DssCorHeader.Branch_Notif_Id_Fk,               
+       DssCorHeader.Dss_Notif_Id_Fk,  
+       DssCorHeader.Workflow_Status,  
+       DssCorHeader.Workflow_Notification_Id   , 
+       DssCorHeader.Gis_Location_Id_Fk 
+  FROM DSS_COR_HEADER        DssCorHeader,                
+       VU_DSS_ALL_MGR_AGNT_VIEW FROM_MGR,                
+       VU_DSS_ALL_MGR_AGNT_VIEW TO_MGR,                
+       VU_DSS_ST_BRANCH    FBR,                
+       VU_DSS_ST_BRANCH    TBR                
+ WHERE FROM_MGR.MGR_N_AGENT_NO(+) = DssCorHeader.FROM_MANAGER_NO_FK                
+   AND TO_MGR.MGR_N_AGENT_NO(+) = DssCorHeader.TO_MANAGER_NO_FK                
+   AND FBR.V_BRANCH_CODE(+) = DssCorHeader.FROM_BRANCH_CODE_FK                
+   AND TBR.V_BRANCH_CODE(+) = DssCorHeader.TO_BRANCH_CODE_FK              
    order by 1 DESC]]></SQLQuery>
     <EntityUsage
       Name="DssCorHeader"
@@ -693,6 +717,20 @@
         EntityAttrName="WorkflowNotificationId"
         EntityUsage="DssCorHeader"
         AliasName="WORKFLOW_NOTIFICATION_ID"/>
+    <ViewAttribute
+        Name="GisLocationIdFk"
+        PrecisionRule="true"
+        EntityAttrName="GisLocationIdFk"
+        EntityUsage="DssCorHeader"
+        AliasName="GIS_LOCATION_ID_FK"
+        LOVName="LOV_GisLocationIdFk">
+        <Properties>
+            <SchemaBasedProperties>
+                <CONTROLTYPE
+                    Value="choice"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
     <ViewCriteria
       Name="DssCorHeaderViewCriteria"
       ViewObjectName="pqt.dss.cor.model.vo.DssCorHeaderView"

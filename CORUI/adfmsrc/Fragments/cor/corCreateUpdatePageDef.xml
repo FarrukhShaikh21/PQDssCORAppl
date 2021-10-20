@@ -68,5 +68,7 @@
                   InstanceName="data.CORAMDataControl.dataProvider"
                   ReturnName="data.CORAMDataControl.methodResults.searchAgents_CORAMDataControl_dataProvider_searchAgents_result"/>
     <listOfValues Uses="LOV_AgentCode" StaticList="false" IterBinding="DssCorLineView2Iterator" id="AgentCode"/>
+    <list IterBinding="DssCorHeaderView1Iterator" StaticList="false" Uses="LOV_GisLocationIdFk" id="GisLocationIdFk"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
   </bindings>
 </pageDefinition>
